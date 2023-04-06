@@ -10,11 +10,15 @@ import matplotlib.pyplot as plt
 import time
 import math
 
+
 #set the pseudo-random seed for reproducibility
 random.seed(0)
 
 # Create a variable to store the number of agents
 #n_agents = 10
+
+#iterations to make the model "move" more than once. 
+n_iterations = 1000
 
 
       # Calculate the Euclidean distance between (x0, y0) and (x1, y1)#
@@ -59,14 +63,15 @@ def get_both_distance():
     for i in range(len(agents)):
          a = agents[i] #reassign a to first variable's position in range calculation
          for j in range(len(agents)):
-             b = agents[j]
-             #print("i", i, "j", j)
-             distance = get_distance(a[0], a[1], b[0], b[1])
-             #print("distance between", a, b, distance)
-             max_distance = max(max_distance, distance)
-             #print("max_distance", max_distance)
-             min_distance = min(min_distance, distance)
-             #print("min_distance", min_distance)
+             if i!=j:
+                 b = agents[j]
+                 print("i", i, "j", j)
+                 distance = get_distance(a[0], a[1], b[0], b[1])
+                 #print("distance between", a, b, distance)
+                 max_distance = max(max_distance, distance)
+                 #print("max_distance", max_distance)
+                 min_distance = min(min_distance, distance)
+                 #print("min_distance", min_distance)
     return min_distance, max_distance
     #return max_distance
 
@@ -76,7 +81,7 @@ def get_both_distance():
 run_times = []
 
 # Create a loop to run for a range of agents
-n_agents_range = range(500, 5000, 500)
+n_agents_range = range(3, 4, 10)
 for n_agents in n_agents_range: 
     
     # Create a list to store agents - agents are the randomly created x and y variables

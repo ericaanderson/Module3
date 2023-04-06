@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 import time
 import math
 
+import agentframework as af
+
 #set the pseudo-random seed for reproducibility
 random.seed(0)
 
@@ -17,7 +19,8 @@ random.seed(0)
 #n_agents = 10
 
 #iterations to make the model "move" more than once. 
-n_iterations = 1000
+n_iterations = 10
+
 
 # Variables for constraining movement.
 # The minimum x coordinate.
@@ -28,7 +31,6 @@ y_min = 0
 x_max = 99
 # The maximum y coordinate.
 y_max = 99
-
 
 
       # Calculate the Euclidean distance between (x0, y0) and (x1, y1)#
@@ -85,44 +87,51 @@ def get_both_distance():
     #return max_distance
 
                             #initialize agents#
+a = af.Agent()
+print("type(a)", type(a))
 
+
+# A list to store times
+run_times = []
 
 # Create a loop to run for a range of agents
 n_agents_range = range(500, 5000, 500)
 
 # Main Simulation Loop (in n_iterations)
-
+for n_agents in n_iterations:
+    for n_agents in n_agents_range: 
+        
         # Create a list to store agents - agents are the randomly created x and y variables
-n_agents = 10
-agents = []
+        agents = []
+        for i in range(n_agents):
+            agents.append([random.randint(0, 99), random.randint(0, 99)])
+            # Apply movement constraints.
+            if agents[i][0] < x_min:
+                agents[i][0] = x_min
+            if agents[i][1] < y_min:
+                agents[i][1] = y_min
+            if agents[i][0] > x_max:
+                agents[i][0] = x_max
+            if agents[i][1] > y_max:
+                agents[i][1] = y_max
+        #print(agents)
 
-for i in range(n_agents):
-    agents.append([random.randint(0, 99), random.randint(0, 99)])
-            
-for ite in range(n_iterations):
-    #move the agents
-    for i in range(n_agents):
-        if random.random() < 0.5:
-            agents[i][0] = agents [i][0] +1
-        else:
-            agents[i][0] = agents [i][0] -1
-        #move y
-        if random.random() < 0.5:
-            agents[i][1] = agents [i][1] +1
-        else:
-            agents[i][1] = agents [i][1] -1
-    print(get_both_distance())
-    
+
 # =============================================================================
-#             # Apply movement constraints.
-#             if agents[i][0] < x_min:
-#                 agents[i][0] = x_min
-#             if agents[i][1] < y_min:
-#                 agents[i][1] = y_min
-#             if agents[i][0] > x_max:
-#                 agents[i][0] = x_max
-#             if agents[i][1] > y_max:
-#                 agents[i][1] = y_max
-#         #print(agents)
-# 
+#                            # Plot #
+# for i in range(n_agents):
+#     plt.scatter(agents[i][0], agents[i][1], color='black')
+# # Plot the coordinate with the largest x red
+# lx = max(agents, key=operator.itemgetter(0))
+# plt.scatter(lx[0], lx[1], color='red')
+# # Plot the coordinate with the smallest x blue
+# sx = min(agents, key=operator.itemgetter(0))
+# plt.scatter(sx[0], sx[1], color='blue')
+# # Plot the coordinate with the largest y yellow
+# ly = max(agents, key=operator.itemgetter(1))
+# plt.scatter(ly[0], ly[1], color='yellow')
+# # Plot the coordinate with the smallest y green
+# sy = min(agents, key=operator.itemgetter(1))
+# plt.scatter(sy[0], sy[1], color='green')
+# plt.show()
 # =============================================================================
