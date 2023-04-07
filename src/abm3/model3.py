@@ -92,9 +92,11 @@ n_agents_range = range(500, 5000, 500)
 
 # Main Simulation Loop (in n_iterations)
 
-        # Create a list to store agents - agents are the randomly created x and y variables
 n_agents = 10
 agents = []
+
+
+        # Create a list to store agents - agents are the randomly created x and y variables
 
 for i in range(n_agents):
     agents.append([random.randint(0, 99), random.randint(0, 99)])
