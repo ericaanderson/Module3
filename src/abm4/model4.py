@@ -22,19 +22,17 @@ n_agents = 10
 n_iterations = 10
 
 a = af.Agent()
-print("type(a)", type(a))
+#print("type(a)", type(a))
 
-# =============================================================================
-# # Variables for constraining movement.
-# # The minimum x coordinate.
-# x_min = 0
-# # The minimum y coordinate.
-# y_min = 0
-# # The maximum x coordinate.
-# x_max = 99
-# # The maximum y coordinate.
-# y_max = 99
-# =============================================================================
+# Variables for constraining movement.
+# The minimum x coordinate.
+x_min = 0
+# The minimum y coordinate.
+y_min = 0
+# The maximum x coordinate.
+x_max = 99
+# The maximum y coordinate.
+y_max = 99
 
 
       # Calculate the Euclidean distance between (x0, y0) and (x1, y1)#
@@ -92,47 +90,32 @@ def get_both_distance():
 
                             #initialize agents#
 # =============================================================================
-# a = af.Agent()
-# print("type(a)", type(a))
+a = af.Agent()
+print("type(a)", type(a))
 # =============================================================================
 
 agents = []
 for i in range(n_agents):
     # Create an agent
     agents.append(af.Agent())
-    print(agents[i])
-print(agents)
 
-variable = af.Agent()
-print(variable)
-
-
-for ite in range(n_iterations):
-    #move the agents
-    for i in range(n_agents):
-        if random.random() < 0.5:
-            agents[i].x = agents [i].x +1
-        else:
-            agents[i].x = agents [i].x -1
-        #move y
-        if random.random() < 0.5:
-            agents[i].y = agents [i].y +1
-        else:
-            agents[i].y = agents [i].y -1
-    print(get_both_distance())
-                  
 # =============================================================================
-#                    # Apply movement constraints.
-#                 if agents[i].x < x_min:
-#                     agents[i].x = x_min
-#                 if agents[i].y < y_min:
-#                     agents[i].y = y_min
-#                 if agents[i].x > x_max:
-#                     agents[i].x = x_max
-#                 if agents[i].y > y_max:
-#                     agents[i].y = y_max
-#             #print(agents)
+# for i in range(n_agents):
+#     x_min = min(af.Agent([i].x))
+#     y_min = min(af.Agent([i].y))
+#     x_max = max(af.Agent([i].x))
+#     y_max = max(af.Agent([i].y))
 # =============================================================================
+ 
+# Move agents
+for i in range(n_agents):
+    agents[i].move(x_min, y_min, x_max, y_max)
+
+
+
+                 
+
+            #print(agents)
 
 
 # Plot the coordinate with the largest x red
