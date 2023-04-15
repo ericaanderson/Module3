@@ -1,39 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Apr  2 15:00:03 2023
+Created on Sat Apr 15 17:25:52 2023
 
 @author: erica
 """
-
-import random
-import matplotlib.pyplot as plt
-import time
-import math
-import operator
-import agentframework as af
-
-#set the pseudo-random seed for reproducibility
-random.seed(0)
-
-# Create a variable to store the number of agents
-n_agents = 10
-
-#iterations to make the model "move" more than once. 
-n_iterations = 10
-
-a = af.Agent('i')
-#print("type(a)", type(a))
-
-# Variables for constraining movement.
-# The minimum x coordinate.
-x_min = 0
-# The minimum y coordinate.
-y_min = 0
-# The maximum x coordinate.
-x_max = 99
-# The maximum y coordinate.
-y_max = 99
-
 
       # Calculate the Euclidean distance between (x0, y0) and (x1, y1)#
           # Functions to calculate the distance between each agent#
@@ -87,44 +57,3 @@ def get_both_distance():
              #print("min_distance", min_distance)
     return min_distance, max_distance
     #return max_distance
-
-                            #initialize agents#
-
-agents = []
-for i in range(n_agents):
-    # Create an agent
-    agents.append(af.Agent('i'))
-    print (agents, i)
-    
-    
-# =============================================================================
-# for i in range(n_agents):
-#     x_min = min(af.Agent([i].x))
-#     y_min = min(af.Agent([i].y))
-#     x_max = max(af.Agent([i].x))
-#     y_max = max(af.Agent([i].y))
-# =============================================================================
- 
-# Move agents
-for i in range(n_agents):
-    agents[i].move(x_min, y_min, x_max, y_max)
-
-
-
-                 
-
-            #print(agents)
-
-
-# Plot the coordinate with the largest x red
-lx = max(agents, key=operator.attrgetter('x'))
-plt.scatter(lx.x, lx.y, color='red')
-# Plot the coordinate with the smallest x blue
-sx = min(agents, key=operator.attrgetter('x'))
-plt.scatter(sx.x, sx.y, color='blue')
-# Plot the coordinate with the largest y yellow
-ly = max(agents, key=operator.attrgetter('y'))
-plt.scatter(ly.x, ly.y, color='yellow')
-# Plot the coordinate with the smallest y green
-sy = min(agents, key=operator.attrgetter('y'))
-plt.scatter(sy.x, sy.y, color='green')

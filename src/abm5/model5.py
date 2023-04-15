@@ -10,7 +10,10 @@ import matplotlib.pyplot as plt
 import time
 import math
 import operator
-import agentframework as af
+import my_modules.agentframework as af 
+import my_modules.io as io
+
+environment = io.read_data()
 
 #set the pseudo-random seed for reproducibility
 random.seed(0)
@@ -89,14 +92,18 @@ def get_both_distance():
     #return max_distance
 
                             #initialize agents#
+# =============================================================================
+#a = af.Agent()
+#print("type(a)", type(a))
+# =============================================================================
 
 agents = []
 for i in range(n_agents):
     # Create an agent
     agents.append(af.Agent('i'))
     print (agents, i)
-    
-    
+
+
 # =============================================================================
 # for i in range(n_agents):
 #     x_min = min(af.Agent([i].x))
@@ -115,7 +122,11 @@ for i in range(n_agents):
 
             #print(agents)
 
-
+#Limit axis and flip y
+plt.ylim(y_min, y_max)
+plt.xlim(x_min, x_max)
+# Plot 'agents' on the 'environmen
+plt.imshow(environment)
 # Plot the coordinate with the largest x red
 lx = max(agents, key=operator.attrgetter('x'))
 plt.scatter(lx.x, lx.y, color='red')
