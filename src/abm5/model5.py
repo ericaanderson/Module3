@@ -40,7 +40,7 @@ x_max = int(n_cols - 1)
 # The maximum an agents y coordinate is allowed to be.
 y_max = int(n_rows - 1)
 
-a = af.Agent('i','n_rows','n_cols')
+a = af.Agent('i', 'environment','n_rows','n_cols')
 #print("type(a)", type(a))
 
       # Calculate the Euclidean distance between (x0, y0) and (x1, y1)#
@@ -105,31 +105,29 @@ def get_both_distance():
 agents = []
 for i in range(n_agents):
     # Create an agent
-    agents.append(af.Agent('i','n_rows','n_cols'))
+    agents.append(af.Agent('i','environment', 'n_rows','n_cols'))
     print (agents, i)
-
-
-# =============================================================================
-# for i in range(n_agents):
-#     x_min = min(af.Agent([i].x))
-#     y_min = min(af.Agent([i].y))
-#     x_max = max(af.Agent([i].x))
-#     y_max = max(af.Agent([i].y))
-# =============================================================================
  
 # Move agents
 for i in range(n_agents):
     agents[i].move(x_min, y_min, x_max, y_max)
 
-
+#Eat Environment
+for i in range(n_agents):
+    agents[i].eat
 
                  
 
             #print(agents)
 
-#Limit axis and flip y
-plt.ylim(y_min, y_max)
-plt.xlim(x_min, x_max)
+# =============================================================================
+# #Limit axis and flip y
+# plt.ylim(y_min, y_max)
+# plt.xlim(x_min, x_max)
+# =============================================================================
+plt.ylim(y_max / 3, y_max * 2 / 3)
+plt.xlim(x_max / 3, x_max * 2 / 3)
+
 # Plot 'agents' on the 'environmen
 plt.imshow(environment)
 # Plot the coordinate with the largest x red

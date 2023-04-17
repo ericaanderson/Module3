@@ -39,6 +39,17 @@ def n_cols():
     #return(data) 
     return(n_cols)
 
+
+#print(read_data())
+#print(n_cols())
+#print(n_rows()) 
+            
+            
+        #a = ["a"+str(i) for i in range(1, n_cols+1)]
+
+
+
+
 # =============================================================================
 # def area():
 #     df = pd.read_csv('C:/Users/erica/OneDrive/Documents/GitHub/Module3/src/data/input/in.txt') #===> reads in all the rows, but skips the first one as it is a header.
@@ -49,102 +60,6 @@ def n_cols():
 #     y_max = n_rows - 1
 #     return("Number of Rows: "+str(n_rows), "Number of Columns: "+str(n_cols))
 # =============================================================================
-
-#print ("x_max": + x_max,"y_max:" + y_max)           
-
-print(read_data())
-print(n_cols())
-print(n_rows()) 
-            
-            
-        #a = ["a"+str(i) for i in range(1, n_cols+1)]
-
-# =============================================================================
-#         n_rows = len(list(row))
-#         n_cols = len(next(f))
-#         #a = ["a"+str(i) for i in range(1, n_cols+1)]
-#     x_max = n_cols - 1
-#     y_max = n_rows - 1
-# =============================================================================
-        
-
-    #return('n_rows', n_rows, 'n_cols', n_cols)
-
-
-
-
-# =============================================================================
-# def row_coll():
-#     f = open('C:/Users/erica/OneDrive/Documents/GitHub/Module3/src/data/input/in.txt', newline='')
-#     #n_cols = len(next(f))
-#     n_rows = []
-#     n_cols = []
-#     n_rows.append(len(list(row))  
-#     
-#     n_cols.append(len(next(f)))     
-#     f.close()
-# =============================================================================
-    
-
-        
-
-# =============================================================================
-#     f = open('C:/Users/erica/OneDrive/Documents/GitHub/Module3/src/data/input/in.txt', newline='')
-#     
-#     n_cols = len(next(f))
-#     f.close()
-# =============================================================================
-    
-    
-# =============================================================================
-#         for value in line:
-#             field[c] = row
-#             #print(field[c])
-#             c = c+1
-#         
-#         n_rows = len(field[0])
-#         n_cols = len(field)
-#         #n_rows = len(list(row))
-# =============================================================================
-        
-        #first_line = csv.readline(f, quoting=csv.QUOTE_NONNUMERIC)
-        #first_line.count(',') + 1
-        
-# =============================================================================
-#         n_cols = []
-#         collumn = list(csv.reader(f, quoting=csv.QUOTE_NONNUMERIC))
-#         num_col = len(collumn[0])
-#         for value in collumn:
-#             n_cols.append(value)
-# =============================================================================
-        
-    
-        
-# =============================================================================
-#         for value in row:
-#             number_rows = len(list(row))
-#             n_rows.append(number_rows)
-# =============================================================================
-
-#    n_rows.append(numberrows)
-
-
- 
-# =============================================================================
-#     collumn = []
-#     for line in csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
-#         n_cols = first_line.count(',') + 1
-
-#value in collumn:
-#         collumn.append(value)
-
-#   n_cols = len(list(collumn))
-# =============================================================================
-            
-
-    
-
-
 
 
 # =============================================================================
