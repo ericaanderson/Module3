@@ -13,7 +13,11 @@ import operator
 import my_modules.agentframework as af 
 import my_modules.io as io
 
+
+
 environment = io.read_data()
+n_cols = io.n_cols()
+n_rows = io.n_rows()
 
 #set the pseudo-random seed for reproducibility
 random.seed(0)
@@ -24,19 +28,20 @@ n_agents = 10
 #iterations to make the model "move" more than once. 
 n_iterations = 10
 
-a = af.Agent('i')
-#print("type(a)", type(a))
+
 
 # Variables for constraining movement.
 # The minimum x coordinate.
 x_min = 0
 # The minimum y coordinate.
 y_min = 0
-# The maximum x coordinate.
-x_max = 99
-# The maximum y coordinate.
-y_max = 99
+# The maximum an agents x coordinate is allowed to be.
+x_max = int(n_cols - 1)
+# The maximum an agents y coordinate is allowed to be.
+y_max = int(n_rows - 1)
 
+a = af.Agent('i','n_rows','n_cols')
+#print("type(a)", type(a))
 
       # Calculate the Euclidean distance between (x0, y0) and (x1, y1)#
           # Functions to calculate the distance between each agent#
@@ -100,7 +105,7 @@ def get_both_distance():
 agents = []
 for i in range(n_agents):
     # Create an agent
-    agents.append(af.Agent('i'))
+    agents.append(af.Agent('i','n_rows','n_cols'))
     print (agents, i)
 
 

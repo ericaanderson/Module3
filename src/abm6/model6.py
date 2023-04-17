@@ -1,8 +1,8 @@
 
 import random
 import matplotlib.pyplot as plt
-import time
-import math
+#import time
+#import math
 import operator
 import my_modules.agentframework as af 
 import my_modules.io as io
@@ -73,7 +73,7 @@ for ite in range(1, n_iterations + 1):
     # Share store
     # Distribute shares
     for i in range(n_agents):
-        agents[i].share(neighbourhood)
+        agents[i].share(neighborhood)
     # Add store_shares to store and set store_shares back to zero
     for i in range(n_agents):
         print(agents[i])
