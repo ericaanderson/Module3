@@ -95,6 +95,43 @@ def get_both_distance():
              #print("min_distance", min_distance)
     return min_distance, max_distance
     #return max_distance
+    
+    
+    
+        # Define a function that adds up all the values in environment. #
+def env_total():
+    env_total = sum(environment)
+    return env_total
+print (env_total)
+       
+       
+def store_total():
+    store = 0
+    store = []
+    for i in range (n_agents):
+        if af.Agent.eat >=10:
+           af.Agent.eat -=10
+           store.append(store + 10)
+        else:
+            store.append (store + af.Agent.eat)        
+    return (store)
+print (store_total())
+    #Define a function that adds all the store values in all the agents #
+
+
+
+# =============================================================================
+# def store_total():
+#     store = []
+#     for i in range(n_agents):
+#         agents[i].eat
+#         
+#    #store_total = sum (af.Agent(eat))
+#     return store_total
+# print (store_total())
+# =============================================================================
+
+
 
                             #initialize agents#
 # =============================================================================
@@ -116,9 +153,6 @@ for i in range(n_agents):
 for i in range(n_agents):
     agents[i].eat
 
-                 
-
-            #print(agents)
 
 # =============================================================================
 # #Limit axis and flip y

@@ -38,7 +38,6 @@ class Agent():
         self.x = random.randint(tnc - 1, (2 * tnc) - 1)
         tnr = int(n_rows / 3)
         self.y = random.randint(tnr - 1, (2 * tnr) - 1)
-        self.store = 0
 
     
     def __str__(self):
@@ -68,13 +67,25 @@ class Agent():
             location value of agent
         >= 10 : value of 'environment' where the agent is located is reduced by 
                 10 and added to store
+        < 10 :Value of agent location is removed and added to agent store
         self.store: attribute of agent 
 
         Returns
         -------
-        None.
+        store value
 
         """
+        self.store = 0
+        store = []
         if self.environment[self.y][self.x] >= 10:
             self.environment[self.y][self.x] -= 10
             self.store += 10
+            store.append(self.store)
+        else:
+            self.environment[self.y][self.x] - self.environment[self.y][self.x]
+            self.store += self.environment[self.y][self.x]
+            store.append(self.store)
+        return store
+
+
+         

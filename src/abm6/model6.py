@@ -1,14 +1,23 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Apr  2 15:00:03 2023
+
+@author: erica
+"""
 
 import random
 import matplotlib.pyplot as plt
-#import time
-#import math
+import time
+import math
 import operator
-import my_modules.agentframework as af 
-import my_modules.io as io
-import my_modules.geometry as geometry
+import my_modules_6.agentframework as af 
+import my_modules_6.io as io
+import my_modules_6.geometry as geometry 
+
 
 environment = io.read_data()
+n_cols = io.n_cols()
+n_rows = io.n_rows()
 
 #set the pseudo-random seed for reproducibility
 random.seed(0)
@@ -19,46 +28,72 @@ n_agents = 10
 #iterations to make the model "move" more than once. 
 n_iterations = 10
 
-a = af.Agent('i')
-#print("type(a)", type(a))
+
 
 # Variables for constraining movement.
 # The minimum x coordinate.
 x_min = 0
 # The minimum y coordinate.
 y_min = 0
-# The maximum x coordinate.
-x_max = 99
-# The maximum y coordinate.
-y_max = 99
+# The maximum an agents x coordinate is allowed to be.
+x_max = int(n_cols - 1)
+# The maximum an agents y coordinate is allowed to be.
+y_max = int(n_rows - 1)
+
+a = af.Agent('agents', 'i', 'environment','n_rows','n_cols')
+#print("type(a)", type(a))
 
 
+      
+   
+def get_both_distance():
+    """
+    Finds the largest maximum distance and lowest minimum between all the agents'
+   
+    Returns
+        minimum and maximum distance between all the agents
+    """
+    max_distance = 0
+    min_distance = math.inf
+    for i in range(len(agents)):
+         a = agents[i] #reassign a to first variable's position in range calculation
+         for j in range(len(agents)):
+             b = agents[j]
+             #print("i", i, "j", j)
+             distance = get_distance.geometry(a.x, a.y, b.x, b.y)
+             #print("distance between", a, b, distance)
+             max_distance = max(max_distance, distance)
+             #print("max_distance", max_distance)
+             min_distance = min(min_distance, distance)
+             #print("min_distance", min_distance)
+    return min_distance, max_distance
+    #return max_distance
+    
+       
+        # Define a function that adds up all the values in environment. #
+def sum_environment():
+    env_total = sum(environment)
+    return env_total
+print (sum_environment)
+       
 
 
                             #initialize agents#
-# =============================================================================
-#a = af.Agent()
-#print("type(a)", type(a))
-# =============================================================================
+
 
 agents = []
 for i in range(n_agents):
     # Create an agent
-    agents.append(af.Agent('i'))
+    agents.append(af.Agent('i','environment', 'n_rows','n_cols'))
     print (agents, i)
-
-
-# =============================================================================
-# for i in range(n_agents):
-#     x_min = min(af.Agent([i].x))
-#     y_min = min(af.Agent([i].y))
-#     x_max = max(af.Agent([i].x))
-#     y_max = max(af.Agent([i].y))
-# =============================================================================
  
 # Move agents
 for i in range(n_agents):
     agents[i].move(x_min, y_min, x_max, y_max)
+
+#Eat Environment
+for i in range(n_agents):
+    agents[i].eat
 
 
 # Main simulation loop
@@ -73,7 +108,7 @@ for ite in range(1, n_iterations + 1):
     # Share store
     # Distribute shares
     for i in range(n_agents):
-        agents[i].share(neighborhood)
+        agents[i].share(neighbourhood)
     # Add store_shares to store and set store_shares back to zero
     for i in range(n_agents):
         print(agents[i])
@@ -88,13 +123,16 @@ for ite in range(1, n_iterations + 1):
     sum_e = sum_environment()
     print("sum_environment", sum_e)
     print("total resource", (sum_as + sum_e))
-                 
 
-            #print(agents)
+                            #Plot#
+# =============================================================================
+# #Limit axis and flip y
+# plt.ylim(y_min, y_max)
+# plt.xlim(x_min, x_max)
+# =============================================================================
+plt.ylim(y_max / 3, y_max * 2 / 3)
+plt.xlim(x_max / 3, x_max * 2 / 3)
 
-#Limit axis and flip y
-plt.ylim(y_min, y_max)
-plt.xlim(x_min, x_max)
 # Plot 'agents' on the 'environmen
 plt.imshow(environment)
 # Plot the coordinate with the largest x red
