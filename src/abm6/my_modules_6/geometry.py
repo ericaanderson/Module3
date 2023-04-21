@@ -6,35 +6,35 @@ Created on Sat Apr 15 17:25:52 2023
 """
 
 
-class Distance():
+#class Distance():
           # Calculate the Euclidean distance between (x0, y0) and (x1, y1)#
               # Functions to calculate the distance between each agent#
-        def get_distance(x0, y0, x1, y1):
-            """
-            Calculates difference between input x0,y0 and x1,y1 coordinates
+def get_distance(x0, y0, x1, y1):
+    """
+    Calculates difference between input x0,y0 and x1,y1 coordinates
             
-            Parameters
-            ----------
-            x0 : Number
-                The x-coordinate of the first coordinate pair
-            y0 : Number
-                The y-coordinate of the first coordinate pair
-            x1 : Number
-                The x-coordinate of the second coordinate pair
-            y1 : Number
-                The y-coordinate of the second coordinate pair
+    Parameters
+    ----------
+    x0 : Number
+        The x-coordinate of the first coordinate pair
+    y0 : Number
+        The y-coordinate of the first coordinate pair
+    x1 : Number
+        The x-coordinate of the second coordinate pair
+    y1 : Number
+        The y-coordinate of the second coordinate pair
         
-            Returns:
-                Euclidean distance between coordinates (x0, y0) and (x1,y1)
-            """
+    Returns:
+        Euclidean distance between coordinates (x0, y0) and (x1,y1)
+    """
     
-            # Calculate the difference in the x coordinates.
-            dx = x0 - x1
-            # Calculate the difference in the y coordinates.
-            dy = y0 - y1
-            # Square the differences, add the squares, calculate square root
-            distance = ((dx * dx) + (dy * dy)) ** 0.5
-            return distance
+    # Calculate the difference in the x coordinates.
+    dx = x0 - x1
+    # Calculate the difference in the y coordinates.
+    dy = y0 - y1
+    # Square the differences, add the squares, calculate square root
+    distance = ((dx * dx) + (dy * dy)) ** 0.5
+    return distance
           
        
 # =============================================================================
