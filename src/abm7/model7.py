@@ -70,6 +70,7 @@ images = []
     
 def plot():
     fig.clear()
+    images = []
     plt.ylim(y_min, y_max)
     plt.xlim(x_min, x_max)
     plt.imshow(environment)
@@ -169,13 +170,13 @@ for i in range(n_agents):
     agents.append(af.Agent(agents, i, environment, n_rows, n_cols))
 # Animate
 # Initialise fig and carry_on
-    fig = plt.figure(figsize=(7, 7))
-    ax = fig.add_axes([0, 0, 1, 1])
-    carry_on = True
-    data_written = False
-    animation = anim.FuncAnimation(fig, update, init_func=plot, frames=gen_function, repeat=False)
+fig = plt.figure(figsize=(7, 7))
+ax = fig.add_axes([0, 0, 1, 1])
+carry_on = True
+data_written = False
+animation = anim.FuncAnimation(fig, update, init_func=plot, frames=gen_function, repeat=False)
 
-    print (agents, i)
+print (agents, i)
     
     
     

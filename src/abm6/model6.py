@@ -152,7 +152,7 @@ for ite in range(1, n_iterations + 1):
     sy = min(agents, key=operator.attrgetter('y'))
     plt.scatter(sy.x, sy.y, color='green')
 
-imageio.mimsave('../../data/output/out.gif', images, fps=3)
+    imageio.mimsave('../../data/output/out.gif', images, fps=3)
 
 
 
