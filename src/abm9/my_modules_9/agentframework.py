@@ -6,19 +6,17 @@ Created on Tue Apr  4 20:51:47 2023
 """
 
 import random
-import my_modules_8.io as io
-import my_modules_8.geometry as geometry
+import my_modules_9.io as io
+import my_modules_9.geometry as geometry
 
 class Agent():
 
-    def __init__(self, agents, i, environment, n_rows, n_cols):
+    def __init__(self, agents, i, environment, n_rows, n_cols, x = None, y = None):
         """
         The constructor method.
-    
+        
         Parameters
         ----------
-        agents : List
-            A list of Agent instances.
         i : Integer
             To be unique to each instance.
         environment : List
@@ -27,20 +25,30 @@ class Agent():
             The number of rows in environment.
         n_cols : Integer
             The number of columns in environment.
-    
+        x : Integer
+            For initialising the x coordinate of the agent.
+        y : Integer
+            For initialising the y coordinate of the agent.
+        
         Returns
         -------
         None.
-    
+        
         """
         self.agents = agents
         self.i = i
         self.environment = environment
-        tnc = int(n_cols / 3)
-        self.x = random.randint(tnc - 1, (2 * tnc) - 1)
-        tnr = int(n_rows / 3)
-        self.y = random.randint(tnr - 1, (2 * tnr) - 1)
-        self.store = 0
+        if x == None:
+            tnc = int(n_cols / 3)
+            self.x = random.randint(tnc - 1, (2 * tnc) - 1)
+        else:
+            self.x = x
+        if y == None:
+            tnr = int(n_rows / 3)
+            self.y = random.randint(tnr - 1, (2 * tnr) - 1)
+        else:
+            self.y = y
+        self.store = random.randint(0, 99)
         self.store_shares = 0
 
     

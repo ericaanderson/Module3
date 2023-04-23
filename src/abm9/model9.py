@@ -8,11 +8,13 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import math
 import operator
-import my_modules_8.agentframework as af 
-import my_modules_8.io as io
-import my_modules_8.geometry as geometry 
+import my_modules_9.agentframework as af 
+import my_modules_9.io as io
+import my_modules_9.geometry as geometry 
 import matplotlib.animation as anim
 import tkinter as tk
+import requests
+import bs4
 
 environment, n_rows, n_cols = io.read_data()
 
@@ -183,10 +185,21 @@ def exiting():
                             # Main Simulation Loop #
 
 #initialize agents#
+url = 'https://agdturner.github.io/resources/abm9/data.html'
+r = requests.get(url, verify=False)
+content = r.text
+soup = bs4.BeautifulSoup(content, 'html.parser')
+td_ys = soup.find_all(attrs={"class" : "y"})
+td_xs = soup.find_all(attrs={"class" : "x"})
+print(td_ys)
+print(td_xs)
 agents = []
 for i in range(n_agents):
     # Create an agent
-    agents.append(af.Agent(agents, i, environment, n_rows, n_cols))
+    y = int(td_ys[i].text) + 99
+    x = int(td_xs[i].text) + 99
+    agents.append(af.Agent(agents, i, environment, n_rows, n_cols, x, y))
+    print(agents[i].agents[i])
 # Animate
 # Initialise fig and carry_on
     fig = plt.figure(figsize=(7, 7))
