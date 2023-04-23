@@ -64,6 +64,19 @@ def get_both_distance():
             return min_distance, max_distance
             #return max_distance
 
+def get_max_distance():
+    for i in range(len(agents)):
+        a = agents[i] #reassign a to first variable's position in range calculation
+        for j in range(len(agents)):
+            b = agents[j]
+            distance = geometry.get_distance(a.x, a.y, b.x, b.y)
+            #print("distance between", a, b, distance)
+            max_distance = max(distance)
+            return max_distance
+    
+def sum_agent_stores():
+    sum_agent_stores = sum(agents[i].eat())
+
         # Define a function that adds up all the values in environment. #
 def sum_environment():
     env_total = sum(environment)
@@ -202,28 +215,28 @@ for i in range(n_agents):
     print(agents[i].agents[i])
 # Animate
 # Initialise fig and carry_on
-    fig = plt.figure(figsize=(7, 7))
-    ax = fig.add_axes([0, 0, 1, 1])
-    carry_on = True
-    data_written = False
+fig = plt.figure(figsize=(7, 7))
+ax = fig.add_axes([0, 0, 1, 1])
+carry_on = True
+data_written = False
     # GUI
-    root = tk.Tk()
-    root.wm_title("Agent Based Model")
-    canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
-    canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-    menu_bar = tk.Menu(root)
-    root.config(menu=menu_bar)
-    menu_0 = tk.Menu(menu_bar)
-    menu_bar.add_cascade(label="Model", menu=menu_0)
-    menu_0.add_command(label="Run model", command=lambda: run(canvas))
-    menu_0.add_command(label="Write data", command=lambda: output())
-    menu_0.add_command(label="Exit", command=lambda: exiting())
-    menu_0.entryconfig("Write data", state="disabled")
+root = tk.Tk()
+root.wm_title("Agent Based Model")
+canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
+canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+menu_bar = tk.Menu(root)
+root.config(menu=menu_bar)
+menu_0 = tk.Menu(menu_bar)
+menu_bar.add_cascade(label="Model", menu=menu_0)
+menu_0.add_command(label="Run model", command=lambda: run(canvas))
+menu_0.add_command(label="Write data", command=lambda: output())
+menu_0.add_command(label="Exit", command=lambda: exiting())
+menu_0.entryconfig("Write data", state="disabled")
     # Exit if the window is closed.
-    root.protocol('WM_DELETE_WINDOW', exiting)
-    tk.mainloop()
+root.protocol('WM_DELETE_WINDOW', exiting)
+tk.mainloop()
 
-    print (agents, i)
+print (agents, i)
     
     
     

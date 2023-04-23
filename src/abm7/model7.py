@@ -58,7 +58,17 @@ def get_both_distance():
             #print("min_distance", min_distance)
             return min_distance, max_distance
             #return max_distance
-
+            
+def get_max_distance():
+    for i in range(len(agents)):
+        a = agents[i] #reassign a to first variable's position in range calculation
+        for j in range(len(agents)):
+            b = agents[j]
+            distance = geometry.get_distance(a.x, a.y, b.x, b.y)
+            #print("distance between", a, b, distance)
+            max_distance = max(distance)
+            return max_distance
+    
         # Define a function that adds up all the values in environment. #
 def sum_environment():
     env_total = sum(environment)
@@ -97,7 +107,10 @@ def plot():
     images.append(imageio.imread(filename))
     plt.show()
 
-
+def sum_agent_stores():
+    sum_agent_stores = sum(agents[i].eat())
+    return 'sum_agent_stores', sum_agent_stores
+    
 def update(frames):
     # Model loop
     #for ite in range(1, n_iterations + 1):
@@ -107,7 +120,8 @@ def update(frames):
     for i in range(n_agents):
         agents[i].move(x_min, y_min, x_max, y_max)
         agents[i].eat()
-        #print(agents[i])
+        print(agents[i])
+
     # Share store
     print("Share")
     # Distribute shares
@@ -131,17 +145,17 @@ def update(frames):
  
     # Stopping condition
     global carry_on
-    #Average agent stopping condition
-    if sum_as / n_agents > 80:
-        carry_on = False
-        print("stopping condition")
 # =============================================================================
-#     # Random
-#     if random.random() < 0.1:
-#         #if sum_as / n_agents > 80:
+#     #Average agent stopping condition
+#     if sum_as / n_agents > 80:
 #         carry_on = False
 #         print("stopping condition")
 # =============================================================================
+    # Random
+    if random.random() < 0.1:
+        #if sum_as / n_agents > 80:
+        carry_on = False
+        print("stopping condition")
 
     # Plot
     plot()
