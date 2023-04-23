@@ -1,15 +1,18 @@
 
+
 import imageio
 import os
 import random
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import math
 import operator
-import my_modules_7.agentframework as af 
-import my_modules_7.io as io
-import my_modules_7.geometry as geometry 
+import my_modules_8.agentframework as af 
+import my_modules_8.io as io
+import my_modules_8.geometry as geometry 
 import matplotlib.animation as anim
-
+import tkinter as tk
 
 environment, n_rows, n_cols = io.read_data()
 
@@ -106,7 +109,7 @@ def update(frames):
     for i in range(n_agents):
         agents[i].move(x_min, y_min, x_max, y_max)
         agents[i].eat()
-        #print(agents[i])
+        print(agents[i])
     # Share store
     print("Share")
     # Distribute shares
@@ -153,12 +156,29 @@ def gen_function():
         ite = ite + 1
     global data_written
     if data_written == False:
-        # Write data
-        print("write data")
-        io.write_data('../../data/output/out.txt', environment)
-        imageio.mimsave('../../data/output/out.gif', images, fps=3)
+        # Set the Write data menu to normal.
+        menu_0.entryconfig("Write data", state="normal")
         data_written = True
         
+
+def run(canvas):
+    animation = anim.FuncAnimation(fig, update, init_func=plot, frames=gen_function, repeat=False)
+    animation.new_frame_seq()
+    canvas.draw()
+
+def output():
+    # Write data
+    print("write data")
+    io.write_data('../../data/output/out.txt', environment)
+    imageio.mimsave('../../data/output/out.gif', images, fps=3)
+
+def exiting():
+    """
+    Exit the program.
+    """
+    root.quit()
+    root.destroy()
+    #sys.exit(0)
         
                             # Main Simulation Loop #
 
@@ -173,7 +193,22 @@ for i in range(n_agents):
     ax = fig.add_axes([0, 0, 1, 1])
     carry_on = True
     data_written = False
-    animation = anim.FuncAnimation(fig, update, init_func=plot, frames=gen_function, repeat=False)
+    # GUI
+    root = tk.Tk()
+    root.wm_title("Agent Based Model")
+    canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
+    canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+    menu_bar = tk.Menu(root)
+    root.config(menu=menu_bar)
+    menu_0 = tk.Menu(menu_bar)
+    menu_bar.add_cascade(label="Model", menu=menu_0)
+    menu_0.add_command(label="Run model", command=lambda: run(canvas))
+    menu_0.add_command(label="Write data", command=lambda: output())
+    menu_0.add_command(label="Exit", command=lambda: exiting())
+    menu_0.entryconfig("Write data", state="disabled")
+    # Exit if the window is closed.
+    root.protocol('WM_DELETE_WINDOW', exiting)
+    tk.mainloop()
 
     print (agents, i)
     
