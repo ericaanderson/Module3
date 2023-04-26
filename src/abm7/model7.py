@@ -177,17 +177,17 @@ def update(frames):
  
     # Stopping condition
     global carry_on
+    #Average agent stopping condition
+    if sum_as / n_agents > 80:
+        carry_on = False
+        print("stopping condition")
+    # Random
 # =============================================================================
-#     #Average agent stopping condition
-#     if sum_as / n_agents > 80:
+#     if random.random() < 0.1:
+#         #if sum_as / n_agents > 80:
 #         carry_on = False
 #         print("stopping condition")
 # =============================================================================
-    # Random
-    if random.random() < 0.1:
-        #if sum_as / n_agents > 80:
-        carry_on = False
-        print("stopping condition")
 
     # Plot
     plot()
