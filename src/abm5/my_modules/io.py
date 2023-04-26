@@ -40,12 +40,21 @@ def n_cols():
     return(n_cols)
 
 
-#print(read_data())
-#print(n_cols())
-#print(n_rows()) 
-            
-            
-        #a = ["a"+str(i) for i in range(1, n_cols+1)]
+
+#Write a function to write out the values of environment to a file 
+# call this function after the main module
+
+def write_data(self):
+    """
+    Write environmental data to a file
+
+    :return:
+    """
+    file = 'C:/Users/erica/OneDrive/Documents/GitHub/Module3/src/data/output/environment.txt'
+    with open(file, 'wb') as output_file:
+        output_file.write(self)
+
+
 
 
 

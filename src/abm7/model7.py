@@ -60,27 +60,62 @@ def get_both_distance():
             #return max_distance
             
 def get_max_distance():
+    """
+    Calculates and returns the largest distance between any two agents.
+
+    Returns
+    -------
+    max_distance : Number
+        The largest distance between any two agents.
+
+    """
+    max_distance = 0
     for i in range(len(agents)):
         a = agents[i] #reassign a to first variable's position in range calculation
         for j in range(len(agents)):
             b = agents[j]
             distance = geometry.get_distance(a.x, a.y, b.x, b.y)
             #print("distance between", a, b, distance)
-            max_distance = max(distance)
-            return max_distance
+            max_distance = max(distance, max_distance)
+    return max_distance
+
     
         # Define a function that adds up all the values in environment. #
 def sum_environment():
-    env_total = sum(environment)
+    """
+    Calculates and returns the sum of all the values in environment
+
+    Returns
+    -------
+    env_total : Number
+        The sum of all agents in the environment.
+    """
+    env_total = 0
+    for row in environment:
+        env_total = env_total + sum(row)
     return env_total
-print (sum_environment)
+
+def sum_agent_stores():
+    """
+    Calculates and returns the sum of store variable values 
+
+    Returns
+    -------
+    sum_agent_stores : Number
+        The end sum of all agent stores.
+    """
+    sum_agent_stores = 0
+    for a in agents:
+        sum_agent_stores = sum_agent_stores + a.store
+    return sum_agent_stores
+
        
 ite = 1
 images = []
     
 def plot():
     fig.clear()
-    images = []
+    #images = []
     plt.ylim(y_min, y_max)
     plt.xlim(x_min, x_max)
     plt.imshow(environment)
@@ -107,9 +142,6 @@ def plot():
     images.append(imageio.imread(filename))
     plt.show()
 
-def sum_agent_stores():
-    sum_agent_stores = sum(agents[i].eat())
-    return 'sum_agent_stores', sum_agent_stores
     
 def update(frames):
     # Model loop

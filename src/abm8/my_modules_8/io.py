@@ -23,7 +23,17 @@ def read_data():
     n_cols = len(data[0])
     return (data, n_rows, n_cols)
 
+def write_data(self):
+    """
+    Write environmental data to a file
 
+    :return:
+    """
+    file = 'C:/Users/erica/OneDrive/Documents/GitHub/Module3/src/data/output/environment.txt'
+    with open(file, 'wb') as output_file:
+        output_file.write(self)
+        
+        
 # =============================================================================
 # def n_rows():
 #     n_rows = []

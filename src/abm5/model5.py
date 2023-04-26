@@ -41,7 +41,8 @@ x_max = int(n_cols - 1)
 y_max = int(n_rows - 1)
 
 a = af.Agent('i', 'environment','n_rows','n_cols')
-#print("type(a)", type(a))
+
+
 
       # Calculate the Euclidean distance between (x0, y0) and (x1, y1)#
           # Functions to calculate the distance between each agent#
@@ -103,41 +104,12 @@ def env_total():
     env_total = sum(environment)
     return env_total
 print (env_total)
-       
-       
-def store_total():
-    store = 0
-    store = []
-    for i in range (n_agents):
-        if af.Agent.eat >=10:
-           af.Agent.eat -=10
-           store.append(store + 10)
-        else:
-            store.append (store + af.Agent.eat)        
-    return (store)
-print (store_total())
-    #Define a function that adds all the store values in all the agents #
 
-
-
-# =============================================================================
-# def store_total():
-#     store = []
-#     for i in range(n_agents):
-#         agents[i].eat
-#         
-#    #store_total = sum (af.Agent(eat))
-#     return store_total
-# print (store_total())
-# =============================================================================
-
-
-
+def sum_agent_stores():
+    sum_agent_stores = sum(agents[i].eat())
+    return sum_agent_stores
+print (sum_agent_stores)
                             #initialize agents#
-# =============================================================================
-#a = af.Agent()
-#print("type(a)", type(a))
-# =============================================================================
 
 agents = []
 for i in range(n_agents):
@@ -152,8 +124,9 @@ for i in range(n_agents):
 #Eat Environment
 for i in range(n_agents):
     agents[i].eat
+    io.write_data
 
-
+                            # plot 
 # =============================================================================
 # #Limit axis and flip y
 # plt.ylim(y_min, y_max)

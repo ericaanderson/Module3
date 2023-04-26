@@ -64,7 +64,10 @@ def sum_environment():
 print (sum_environment)
        
 
-
+def sum_agent_stores():
+    sum_agent_stores = sum(agents[i].eat())
+    return sum_agent_stores
+print (sum_agent_stores)
 
                             # Main Simulation Loop #
 
@@ -83,7 +86,9 @@ for i in range(n_agents):
 #Eat Environment
 for i in range(n_agents):
     agents[i].eat
-
+    io.write_data
+    
+    
 # Create directory to write images to.
 try:
     os.makedirs('../../data/output/images/')
