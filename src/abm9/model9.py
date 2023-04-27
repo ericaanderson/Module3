@@ -1,5 +1,5 @@
 
-
+import tkinter as tk
 import imageio
 import os
 import random
@@ -12,7 +12,6 @@ import my_modules_9.agentframework as af
 import my_modules_9.io as io
 import my_modules_9.geometry as geometry 
 import matplotlib.animation as anim
-import tkinter as tk
 import requests
 import bs4
 
@@ -63,7 +62,7 @@ def get_both_distance():
             #print("min_distance", min_distance)
             return min_distance, max_distance
             #return max_distance
-
+            
 def get_max_distance():
     """
     Calculates and returns the largest distance between any two agents.
@@ -113,12 +112,14 @@ def sum_agent_stores():
     for a in agents:
         sum_agent_stores = sum_agent_stores + a.store
     return sum_agent_stores
+
        
 ite = 1
 images = []
     
 def plot():
     fig.clear()
+    #images = []
     plt.ylim(y_min, y_max)
     plt.xlim(x_min, x_max)
     plt.imshow(environment)
@@ -145,7 +146,7 @@ def plot():
     images.append(imageio.imread(filename))
     plt.show()
 
-
+    
 def update(frames):
     # Model loop
     #for ite in range(1, n_iterations + 1):
@@ -156,6 +157,7 @@ def update(frames):
         agents[i].move(x_min, y_min, x_max, y_max)
         agents[i].eat()
         print(agents[i])
+
     # Share store
     print("Share")
     # Distribute shares
@@ -183,8 +185,8 @@ def update(frames):
     if sum_as / n_agents > 80:
         carry_on = False
         print("stopping condition")
+    # Random
 # =============================================================================
-#     # Random
 #     if random.random() < 0.1:
 #         #if sum_as / n_agents > 80:
 #         carry_on = False
@@ -206,12 +208,12 @@ def gen_function():
         menu_0.entryconfig("Write data", state="normal")
         data_written = True
         
-
+ 
 def run(canvas):
     animation = anim.FuncAnimation(fig, update, init_func=plot, frames=gen_function, repeat=False)
     animation.new_frame_seq()
     canvas.draw()
-
+        
 def output():
     # Write data
     print("write data")
@@ -224,8 +226,12 @@ def exiting():
     """
     root.quit()
     root.destroy()
-    #sys.exit(0)
-        
+    #sys.exit(0) 
+    
+ 
+    
+ 
+    
                             # Main Simulation Loop #
 
 #initialize agents#
@@ -244,13 +250,15 @@ for i in range(n_agents):
     x = int(td_xs[i].text) + 99
     agents.append(af.Agent(agents, i, environment, n_rows, n_cols, x, y))
     print(agents[i].agents[i])
+    
 # Animate
 # Initialise fig and carry_on
 fig = plt.figure(figsize=(7, 7))
 ax = fig.add_axes([0, 0, 1, 1])
 carry_on = True
 data_written = False
-    # GUI
+
+# GUI
 root = tk.Tk()
 root.wm_title("Agent Based Model")
 canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
@@ -263,9 +271,12 @@ menu_0.add_command(label="Run model", command=lambda: run(canvas))
 menu_0.add_command(label="Write data", command=lambda: output())
 menu_0.add_command(label="Exit", command=lambda: exiting())
 menu_0.entryconfig("Write data", state="disabled")
-    # Exit if the window is closed.
+
+# Exit if the window is closed.
 root.protocol('WM_DELETE_WINDOW', exiting)
 tk.mainloop()
+
+
 
 print (agents, i)
     
